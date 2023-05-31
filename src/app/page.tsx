@@ -1,11 +1,12 @@
 "use client";
 
 import JobEntry from "@/app/components/job_entry";
+import Dropdown from "@/app/components/dropdown_menu";
 
 export default function Home() {
     return (
         <main>
-            <div style={{display: "flex", justifyContent: "center", padding: "1rem"}}>
+            <div style={{display: "flex", justifyContent: "center", flexDirection: "column", padding: "1rem"}}>
                 <JobEntry job={{
                     title: "(Junior) Fullstack Developer (m/w/d)",
                     location: "Stuttgart",

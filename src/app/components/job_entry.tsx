@@ -40,6 +40,7 @@ const JobProperty = styled.div`
   grid-row-start: 3;
   font-weight: lighter;
   display: flex;
+  align-items: center;
   grid-column-start: span 1;
 `
 const JobLink = styled.div`
@@ -49,7 +50,6 @@ const JobLink = styled.div`
 const JobPropertyIcon = styled(FontAwesomeIcon)`
   color: var(--gray-700);
   font-weight: var(--fa-font-light);
-  margin-top: -0.125rem;
   margin-right: 0.5rem;
   font-size: 16px;
 `

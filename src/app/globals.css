@@ -10,6 +10,7 @@
   --gray-200: #EAEAEA;
   --primary-600: #1AAEB7;
   --gray-700: #6E6E6E;
+  --selected-background: #F2FEFF;
 
 
   --foreground-rgb: 0, 0, 0;
@@ -99,9 +100,14 @@ body {
   font-family: Gotham, sans-serif;
   line-height: 1.5;
   background: rgb(var(--background-rgb));
-  /* Fixes font alignment issue */
+}
+
+a, p, li, span, h1, h2, h3, h4, h5, h6 {
+  top: 0.05em;
   position: relative;
-  bottom: 0.1em;
+}
+button {
+
 }
 
 a {
@@ -123,7 +129,7 @@ h3 {
 h4 {
   font-weight: normal;
   font-size: 16px;
-  color: var(--gray-700)
+  color: var(--gray-700);
 }
 h6 {
   font-size: 14px;

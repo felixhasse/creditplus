@@ -13,6 +13,8 @@ export default function Home() {
                     type: "Vollzeit",
                     department: "IT & Projektmanagement"
                 }}></JobEntry>
+                <Dropdown options={["Karlsruhe", "Stuttgart", "Berlin", "München"]} selectedOption={"Karlsruhe"}
+                          menuText={"Wähle einen Standort"}></Dropdown>
             </div>
         </main>
     )

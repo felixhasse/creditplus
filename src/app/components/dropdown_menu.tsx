@@ -1,14 +1,17 @@
-import React, {useState} from 'react';
+import React, {Dispatch, SetStateAction, useState} from 'react';
 import styled from 'styled-components';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faChevronDown} from '@fortawesome/free-solid-svg-icons'
 import {faCheck} from '@fortawesome/free-solid-svg-icons'
+import {Property} from "csstype";
+import Display = Property.Display;
 
 
 // Define the types for the DropdownProps
 interface DropdownProps {
     options: string[];
-    selectedOption: string;
+    selectedOption: string | null;
+    setSelectedOption: Dispatch<SetStateAction<string | null>>;
     menuText: string;
 }
 
@@ -36,7 +39,7 @@ const DropdownButton = styled.button<ButtonProps>`
   background-color: white;
   font-size: 16px;
   cursor: pointer;
-  
+
   h4 {
     color: ${props => props.isOpen ? 'black' : 'var(--gray-700)'};
   }
@@ -90,17 +93,18 @@ const DropdownItem = styled.div<ItemProps>`
 
 `;
 
-const Dropdown: React.FC<DropdownProps> = ({options, selectedOption, menuText}) => {
+const Dropdown: React.FC<DropdownProps> = ({options, selectedOption, setSelectedOption, menuText}) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
         <DropdownWrapper onClick={() => setIsOpen(!isOpen)}>
-            <DropdownButton isOpen={isOpen}><h4>{menuText}</h4><DropdownIcon
+            <DropdownButton isOpen={isOpen}><h4>{selectedOption !== null ? selectedOption : menuText}</h4><DropdownIcon
                 icon={faChevronDown}/></DropdownButton>
             {isOpen && (
                 <DropdownContent>
                     {options.map((option, index) => (
-                        <DropdownItem isSelected={option === selectedOption}>
+                        <DropdownItem key={index} onClick={() => setSelectedOption(option)}
+                                      isSelected={option === selectedOption}>
                             <h4>
                                 {option}
                             </h4>

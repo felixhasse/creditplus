@@ -1,22 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faLocationDot} from '@fortawesome/free-solid-svg-icons'
-import {faClock} from '@fortawesome/free-solid-svg-icons'
-import {faArrowUpRightFromSquare} from '@fortawesome/free-solid-svg-icons'
+import {faArrowUpRightFromSquare, faClock, faLocationDot} from '@fortawesome/free-solid-svg-icons'
+import {Job} from "@/app/interfaces";
 
-import {IconProp} from "@fortawesome/fontawesome-svg-core";
-
-interface Job {
-    title: String,
-    type: String,
-    location: String,
-    department: String
-}
-
-interface JobEntryProps {
+export interface JobEntryProps {
     job: Job,
-    faClock: IconProp
 }
 
 const JobContainer = styled.div`
@@ -55,12 +44,12 @@ const JobPropertyIcon = styled(FontAwesomeIcon)`
   font-size: 16px;
 `
 const JobLinkIcon = styled(FontAwesomeIcon)`
-    color: var(--primary-600);
-    grid-column-start: 3;
-    font-size: 14px;
+  color: var(--primary-600);
+  grid-column-start: 3;
+  font-size: 14px;
 `
 
-const JobEntry: React.FC<JobEntryProps> = ({ job}) => {
+export const JobEntry: React.FC<JobEntryProps> = ({job}) => {
     return (
         <JobContainer>
             <JobDepartment>{job.department}</JobDepartment>
@@ -72,4 +61,3 @@ const JobEntry: React.FC<JobEntryProps> = ({ job}) => {
     )
 };
 
-export default JobEntry;

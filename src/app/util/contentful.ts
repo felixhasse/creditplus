@@ -2,36 +2,45 @@ import gql from "graphql-tag";
 import apolloClient from "./apollo-client";
 
 export async function getAllJobs() {
-    console.log(apolloClient.link);
-    const {data} = await apolloClient.query({
-        query: gql`
-            query{   jobCollection(limit: 20) {
-                items {
-                    name
-                    title
-                    type {
+    let queryResult: any[] = [];
+    let isFinished = false;
+    let i = 0
+    // Jobs are fetched in portions of 20 entries to not exceed maximum query complexity
+    while (!isFinished) {
+        const {data} = await apolloClient.query({
+            query: gql`
+                query{jobCollection(limit: 20, skip: ${20 * i}) {
+                    items {
+                        name
                         title
-                    }
-                    department {
-                        title
-                    }
-                    levelsCollection {
-                        items {
+                        type {
                             title
                         }
-                    }
-                    locationsCollection {
-                        items {
-                            city
+                        department {
+                            title
                         }
+                        levelsCollection {
+                            items {
+                                title
+                            }
+                        }
+                        locationsCollection {
+                            items {
+                                city
+                            }
+                        }
+
                     }
-
                 }
-            }
-            }
-
-        `,
-    });
-    console.log(data.jobCollection.items);
-    return data.jobCollection.items;
+                }
+            `,
+        });
+        if (data.jobCollection.items.length === 0) {
+            isFinished = true;
+            break;
+        }
+        i += 1;
+        queryResult = [...queryResult, ...data.jobCollection.items];
+    }
+    return queryResult;
 }

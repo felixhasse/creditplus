@@ -9,9 +9,9 @@ import Display = Property.Display;
 
 // Define the types for the DropdownProps
 interface DropdownProps {
-    options: string[];
-    selectedOption: string | null;
-    setSelectedOption: Dispatch<SetStateAction<string | null>>;
+    options: Set<string>;
+    selectedOption: string | undefined;
+    setSelectedOption: Dispatch<SetStateAction<string | undefined>>;
     menuText: string;
 }
 
@@ -25,7 +25,10 @@ interface ButtonProps {
 
 // Define the styled components
 const DropdownWrapper = styled.div`
+  margin-top: 1rem;
+  position: relative;
   width: 320px;
+  text-align: left;
 `;
 
 const DropdownButton = styled.button<ButtonProps>`
@@ -59,6 +62,8 @@ const DropdownIcon = styled(FontAwesomeIcon)`
 `;
 
 const DropdownContent = styled.div`
+  position: absolute;
+  width: 100%;
   border-radius: 10px;
   margin-top: 0.25rem;
   box-shadow: 0px 3px 9px #00000029;
@@ -97,13 +102,17 @@ const Dropdown: React.FC<DropdownProps> = ({options, selectedOption, setSelected
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <DropdownWrapper onClick={() => setIsOpen(!isOpen)}>
-            <DropdownButton isOpen={isOpen}><h4>{selectedOption !== null ? selectedOption : menuText}</h4><DropdownIcon
+        <DropdownWrapper>
+            <DropdownButton onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
+                <h4>{selectedOption !== undefined ? selectedOption : menuText}</h4><DropdownIcon
                 icon={faChevronDown}/></DropdownButton>
             {isOpen && (
                 <DropdownContent>
-                    {options.map((option, index) => (
-                        <DropdownItem key={index} onClick={() => setSelectedOption(option)}
+                    {Array.from(options).map((option, index) => (
+                        <DropdownItem key={index} onClick={() => {
+                            setSelectedOption(option !== selectedOption ? option : undefined);
+                            setIsOpen(false);
+                        }}
                                       isSelected={option === selectedOption}>
                             <h4>
                                 {option}

@@ -10,6 +10,7 @@
   --gray-200: #EAEAEA;
   --primary-600: #1AAEB7;
   --gray-700: #6E6E6E;
+  --gray-75: #FAFAFA;
   --selected-background: #F2FEFF;
 
 
@@ -122,6 +123,11 @@ a {
 }
 
 /* Global text styles */
+
+h2 {
+  font-size: 30px;
+  color: black;
+}
 h3 {
   font-size: 18px;
   color: #292929;

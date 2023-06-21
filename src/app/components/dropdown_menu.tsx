@@ -68,6 +68,8 @@ const DropdownContent = styled.div`
   margin-top: 0.25rem;
   box-shadow: 0px 3px 9px #00000029;
   z-index: 1;
+  max-height: 300px;
+  overflow: auto;
 
   & h4 {
     color: black;

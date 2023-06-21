@@ -49,9 +49,13 @@ const DropdownButton = styled.button<ButtonProps>`
   background-color: white;
   font-size: 16px;
   cursor: pointer;
+  white-space: nowrap;
 
   h4 {
     color: ${props => props.isOpen ? 'black' : 'var(--gray-700)'};
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   :hover, :focus {
@@ -75,8 +79,9 @@ const DropdownContent = styled.div`
   margin-top: 0.25rem;
   box-shadow: 0px 3px 9px #00000029;
   z-index: 1;
-  max-height: 300px;
+  height: 250px;
   overflow: auto;
+  
 
   & h4 {
     color: black;

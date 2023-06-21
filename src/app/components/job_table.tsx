@@ -95,6 +95,8 @@ const NextPage = styled.div`
 `
 const SwitchPageIcon = styled(FontAwesomeIcon)`
   color: var(--gray-600);
+  font-size: 14px;
+
 `
 const Divider = styled.hr`
   height: 1px;

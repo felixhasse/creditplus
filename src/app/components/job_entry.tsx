@@ -36,6 +36,7 @@ const JobProperty = styled.div`
 const JobLink = styled.div`
   grid-row-start: 1;
   justify-self: end;
+  align-items: center;
   display: flex;
   grid-column-start: 3;
   

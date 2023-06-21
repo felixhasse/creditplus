@@ -29,6 +29,14 @@ const DropdownWrapper = styled.div`
   position: relative;
   width: 320px;
   text-align: left;
+  
+  @media(min-width: 769px) {
+    margin: 1rem 1rem 0 1rem;
+    width: 200px;
+  }
+  @media(min-width: 993px) {
+    width: 294px;
+  }
 `;
 
 const DropdownButton = styled.button<ButtonProps>`

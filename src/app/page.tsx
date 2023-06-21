@@ -16,14 +16,19 @@ const CareerHeader = styled.div`
   background-color: var(--gray-75);
   text-align: center;
 
-  DropDown {
-
-  }
-
   h6 {
     align-content: center;
   }
 `
+
+const DropdownWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+  
+  @media(min-width: 769px) {
+    flex-direction: row;
+  }   
+  `;
 const MainPage = styled.div`
   display: flex;
   max-width: 100vw;
@@ -86,6 +91,7 @@ export default function Home() {
                 <CareerHeader>
                     <h6>{`${jobs.length} offene Stellen bei Creditplus`}</h6>
                     <h2>Hier beginnt deine Zukunft</h2>
+                    <DropdownWrapper>
                     <Dropdown options={locationOptions}
                               setSelectedOption={setSelectedLocationOption} selectedOption={selectedLocationOption}
                               menuText={"Stadt"}></Dropdown>
@@ -97,6 +103,7 @@ export default function Home() {
                     <Dropdown options={levelOptions}
                               setSelectedOption={setSelectedLevelOption} selectedOption={selectedLevelOption}
                               menuText={"Erfahrungslevel"}></Dropdown>
+                    </DropdownWrapper>
                 </CareerHeader>
                 <JobTable jobs={filteredJobs}></JobTable>
             </MainPage>

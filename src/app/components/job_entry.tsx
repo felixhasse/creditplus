@@ -16,6 +16,11 @@ const JobContainer = styled.div`
   padding: 1.5rem;
   border-radius: 10px;
   width: 100%;
+  cursor: pointer;
+  
+  :hover {
+    background-color: var(--gray-75);
+  }
 
 `
 const JobDepartment = styled.h6`

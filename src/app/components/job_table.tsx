@@ -52,6 +52,12 @@ const PreviousPage = styled.div`
   align-items: center;
   display: flex;
   cursor: pointer;
+  padding: 0 0.5rem;
+
+  :hover {
+    background-color: var(--gray-75);
+    border-radius: 10px;
+  }
 
   h6 {
     display: none;
@@ -61,7 +67,7 @@ const PreviousPage = styled.div`
       display: block;
     }
   }
-`
+`;
 const PageItem = styled.div<PageItemProps>`
   margin-left: 0.25rem;
   margin-right: 0.25rem;
@@ -73,17 +79,27 @@ const PageItem = styled.div<PageItemProps>`
   cursor: ${props => props.isClickable ? 'pointer' : 'default'};
   text-align: center;
   line-height: 40px;
-`
+
+  :hover {
+    background: ${props => props.isClickable ? props.isSelected ? 'var(--primary-75)' : 'var(--gray-75)' : 'white'};
+  }
+`;
 const PageItemWrapper = styled.div`
   display: flex;
   justify-content: center;
-`
+`;
 
 const NextPage = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+  padding: 0 0.5rem;
 
+  :hover {
+    background-color: var(--gray-75);
+    border-radius: 10px;
+    
+  }
   h6 {
     display: none;
     color: var(--gray-600);
@@ -92,12 +108,12 @@ const NextPage = styled.div`
       display: block;
     }
   }
-`
+`;
 const SwitchPageIcon = styled(FontAwesomeIcon)`
   color: var(--gray-600);
   font-size: 14px;
 
-`
+`;
 const Divider = styled.hr`
   height: 1px;
   margin-top: 2rem;
@@ -105,7 +121,7 @@ const Divider = styled.hr`
   width: 100%;
   background-color: var(--gray-200);
   border: none;
-`
+`;
 
 const JobTable: React.FC<JobTableProps> = ({jobs}) => {
     const [currentPage, setCurrentPage] = useState(0);

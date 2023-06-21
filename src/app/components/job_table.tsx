@@ -16,7 +16,7 @@ interface PageItemProps {
 }
 
 const TableContainer = styled.div`
-  padding: 1rem;
+  margin: 1rem;
   display: flex;
   justify-items: start;
   flex-direction: column;
@@ -26,6 +26,7 @@ const TableContainer = styled.div`
   h2 {
     text-align: center;
     margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
   }
 `
 const JobContainer = styled.div`
@@ -33,7 +34,6 @@ const JobContainer = styled.div`
   gap: 1rem;
 `
 const PaginationBar = styled.div`
-  padding-top: 1rem;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -53,6 +53,8 @@ const PreviousPage = styled.div`
   }
 `
 const PageItem = styled.div<PageItemProps>`
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -62,6 +64,10 @@ const PageItem = styled.div<PageItemProps>`
   text-align: center;
   line-height: 40px;
 `
+const PageItemWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+  `
 
 const NextPage = styled.div`
   display: flex;
@@ -76,7 +82,13 @@ const NextPage = styled.div`
 const SwitchPageIcon = styled(FontAwesomeIcon)`
   color: var(--gray-700);
 `
-const PageIndex = styled.div`
+const Divider = styled.hr`
+  height: 1px;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  background-color: var(--gray-200);
+  border: none;
 `
 
 const JobTable: React.FC<JobTableProps> = ({jobs}) => {
@@ -102,11 +114,13 @@ const JobTable: React.FC<JobTableProps> = ({jobs}) => {
             <JobContainer>
                 {currentJobs.map((job, index) => (
                     <JobEntry job={job} key={index}/>))}</JobContainer>
+            <Divider />
             <PaginationBar>
                 <PreviousPage onClick={handlePreviousClick}>
                     <SwitchPageIcon icon={faArrowLeft}/>
                     <h6>Vorherige</h6>
                 </PreviousPage>
+                <PageItemWrapper>
                 {paginationBarIndexes.map((pageNumber, index) => {
                     if (pageNumber === 0 || pageNumber === currentPage || pageNumber === numPages - 1 ||
                         pageNumber === 1 && (currentPage === numPages - 1 || currentPage === 0)) {
@@ -121,6 +135,7 @@ const JobTable: React.FC<JobTableProps> = ({jobs}) => {
                         )
                     }
                 })}
+                </PageItemWrapper>
                 <NextPage onClick={handleNextClick}>
                     <h6>Nächste</h6>
                     <SwitchPageIcon icon={faArrowRight}/>

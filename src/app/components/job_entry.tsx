@@ -10,6 +10,7 @@ export interface JobEntryProps {
 
 const JobContainer = styled.div`
   display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 0.5rem;
   border: 1px solid var(--gray-200);
   padding: 1.5rem;

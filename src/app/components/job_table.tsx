@@ -50,14 +50,10 @@ const PreviousPage = styled.div`
   align-items: center;
   display: flex;
   cursor: pointer;
-  @media (min-width: 481px) {
-    h6 {
-      display: block;
-    }
-  }
   h6 {
     display: none;
-    padding-left: 0.25rem;
+    color: var(--gray-600);
+    padding-left: 0.5rem;
     @media (min-width: 481px) {
       display: block;
     }
@@ -70,7 +66,7 @@ const PageItem = styled.div<PageItemProps>`
   height: 40px;
   border-radius: 50%;
   background: ${props => props.isSelected ? 'var(--primary-75)' : 'white'};
-  color: ${props => props.isSelected ? 'var(--primary-600)' : 'var(--gray-700)'};
+  color: ${props => props.isSelected ? 'var(--primary-600)' : 'var(--gray-600)'};
   cursor: ${props => props.isClickable ? 'pointer' : 'default'};
   text-align: center;
   line-height: 40px;
@@ -87,14 +83,15 @@ const NextPage = styled.div`
 
   h6 {
     display: none;
-    padding-right: 0.25rem;
+    color: var(--gray-600);
+    padding-right: 0.5rem;
     @media (min-width: 481px) {
       display: block;
     }
   }
 `
 const SwitchPageIcon = styled(FontAwesomeIcon)`
-  color: var(--gray-700);
+  color: var(--gray-600);
 `
 const Divider = styled.hr`
   height: 1px;

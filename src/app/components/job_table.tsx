@@ -132,10 +132,11 @@ const JobTable: React.FC<JobTableProps> = ({jobs}) => {
     const [currentPage, setCurrentPage] = useState(0);
     const entriesPerPage: number = 10;
     const numPages = Math.ceil(jobs.length / entriesPerPage);
-    const [paginationBarIndexes, setPaginationBarIndexes] = useState([0, 1, 2, 3, 4, 5, 6])
     const currentJobs = jobs.slice(currentPage * entriesPerPage, (currentPage + 1) * entriesPerPage);
 
-    useEffect(() => setCurrentPage(0), [jobs]);
+    useEffect(() => {
+        setCurrentPage(0);
+    }, [jobs]);
 
 
     const handlePreviousClick = () => {
@@ -161,19 +162,19 @@ const JobTable: React.FC<JobTableProps> = ({jobs}) => {
                     <h6>Vorherige</h6>
                 </PreviousPage>
                 <PageItemWrapper>
-                    {paginationBarIndexes.map((pageNumber, index) => {
-                        if (pageNumber === 0 || pageNumber === currentPage || pageNumber === numPages - 1 ||
-                            pageNumber === 1 && (currentPage === numPages - 1 || currentPage === 0)) {
+                    {Array.from({length: numPages}).map((_, index) => {
+                        if (index === 0 || index === currentPage || index === numPages - 1 ||
+                            index === 1 && (currentPage === numPages - 1 || currentPage === 0)) {
                             return (
-                                <PageItem onClick={() => setCurrentPage(pageNumber)} isClickable={true}
-                                          isSelected={pageNumber === currentPage}
-                                          key={index}>{pageNumber + 1}</PageItem>)
+                                <PageItem onClick={() => setCurrentPage(index)} isClickable={true}
+                                          isSelected={index === currentPage}
+                                          key={index}>{index + 1}</PageItem>);
                         }
-                        if (Math.abs(pageNumber - currentPage) === 1 || currentPage === 0 && pageNumber === 2) {
+                        if (Math.abs(index - currentPage) === 1 || currentPage === 0 && index === 2) {
                             return (
                                 <PageItem isClickable={false} isSelected={false}
                                           key={index}>{"..."}</PageItem>
-                            )
+                            );
                         }
                     })}
                 </PageItemWrapper>

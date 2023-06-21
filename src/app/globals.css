@@ -11,7 +11,12 @@
   --primary-600: #1AAEB7;
   --gray-700: #6E6E6E;
   --gray-75: #FAFAFA;
+  --primary-75: #D6F8FB;
   --selected-background: #F2FEFF;
+
+  /* Breakpoints */
+  --tablet: 481px;
+  --desktop: 769px;
 
 
   --foreground-rgb: 0, 0, 0;

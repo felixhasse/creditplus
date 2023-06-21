@@ -1,6 +1,9 @@
 import gql from "graphql-tag";
 import apolloClient from "./apollo-client";
 
+/**
+ * Fetches all jobs from Contentful
+ */
 export async function getAllJobs() {
     let queryResult: any[] = [];
     let isFinished = false;

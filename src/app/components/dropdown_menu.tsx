@@ -7,7 +7,6 @@ import {Property} from "csstype";
 import Display = Property.Display;
 
 
-// Define the types for the DropdownProps
 interface DropdownProps {
     options: Set<string>;
     selectedOption: string | undefined;
@@ -108,7 +107,17 @@ const DropdownItem = styled.div<ItemProps>`
 
 `;
 
+/**
+ * Functional component for a Dropdown menu with selectable options.*
+ * @component
+ * @param {Set<string>} options - The set of options be displayed in the dropdown menu.
+ * @param {string | undefined} selectedOption - The currently selected option.
+ * @param {Dispatch<SetStateAction<string | undefined>>} setSelectedOption - The setter function to update the selected option.
+ * @param {string} menuText - Placeholder text displayed when no option is selected.
+ * @example
+ */
 const Dropdown: React.FC<DropdownProps> = ({options, selectedOption, setSelectedOption, menuText}) => {
+    // State to handle the opening and closing of the dropdown menu
     const [isOpen, setIsOpen] = useState(false);
 
     return (

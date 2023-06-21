@@ -64,7 +64,11 @@ const JobLinkIcon = styled(FontAwesomeIcon)`
   padding-left: 1rem;
   font-size: 14px;
 `
-
+/**
+ * Component that displays a single job entry.
+ * @component
+ * @param {Job} job - The job object containing the job details.
+ */
 export const JobEntry: React.FC<JobEntryProps> = ({job}) => {
     return (
         <JobContainer>

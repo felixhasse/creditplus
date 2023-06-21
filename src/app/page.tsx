@@ -7,6 +7,7 @@ import {getAllJobs} from "@/app/util/contentful";
 import {Job} from "@/app/interfaces";
 import styled from "styled-components";
 
+
 const CareerHeader = styled.div`
   display: flex;
   width: 100%;
@@ -34,8 +35,11 @@ const MainPage = styled.div`
   max-width: 100vw;
   flex-direction: column;
   align-items: center;
-}
-  `
+  `;
+
+/**
+ * Component for the Creditplus Job Board
+ */
 export default function Home() {
     const [locationOptions, setLocationOptions] = useState<Set<string>>(new Set());
     const [departmentOptions, setDepartmentOptions] = useState<Set<string>>(new Set());
@@ -46,6 +50,8 @@ export default function Home() {
     const [jobs, setJobs] = useState<Job[]>([]);
     const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
 
+
+    // Effect hook to filter jobs based on selected option
     useEffect(() => {
             const newFilteredJobs = jobs.filter((job) => {
                 return (!selectedLocationOption || job.location === selectedLocationOption) &&
@@ -57,6 +63,7 @@ export default function Home() {
         }, [selectedLocationOption, selectedDepartmentOption, selectedLevelOption]
     )
 
+    // Effect hook to get all jobs from contentful
     useEffect(() => {
         getAllJobs(
         ).then((result) => {

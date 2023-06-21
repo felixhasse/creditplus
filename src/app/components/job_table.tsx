@@ -122,7 +122,12 @@ const Divider = styled.hr`
   background-color: var(--gray-200);
   border: none;
 `;
-
+/**
+ * Functional component that displays a table of jobs. Includes a pagination bar to navigate through pages
+ * of job entries.
+ * @component
+ * @param {Job[]} jobs - An array of job objects to be displayed.
+ */
 const JobTable: React.FC<JobTableProps> = ({jobs}) => {
     const [currentPage, setCurrentPage] = useState(0);
     const entriesPerPage: number = 10;

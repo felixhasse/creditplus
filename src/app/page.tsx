@@ -9,6 +9,7 @@ import styled from "styled-components";
 
 const CareerHeader = styled.div`
   display: flex;
+  width: 100%;
   padding: 4rem 1rem 3rem 1rem;
   align-items: center;
   flex-direction: column;
@@ -23,6 +24,12 @@ const CareerHeader = styled.div`
     align-content: center;
   }
 `
+const MainPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+  `
 export default function Home() {
     const [locationOptions, setLocationOptions] = useState<Set<string>>(new Set());
     const [departmentOptions, setDepartmentOptions] = useState<Set<string>>(new Set());
@@ -30,7 +37,6 @@ export default function Home() {
     const [selectedLocationOption, setSelectedLocationOption] = useState<string | undefined>(undefined);
     const [selectedDepartmentOption, setSelectedDepartmentOption] = useState<string | undefined>(undefined);
     const [selectedLevelOption, setSelectedLevelOption] = useState<string | undefined>(undefined);
-
     const [jobs, setJobs] = useState<Job[]>([]);
     const [filteredJobs, setFilteredJobs] = useState<Job[]>([]);
 
@@ -75,7 +81,7 @@ export default function Home() {
 
     return (
         <main>
-            <div>
+            <MainPage>
                 <CareerHeader>
                     <h6>{`${jobs.length} offene Stellen bei Creditplus`}</h6>
                     <h2>Hier beginnt deine Zukunft</h2>
@@ -92,7 +98,7 @@ export default function Home() {
                               menuText={"Erfahrungslevel"}></Dropdown>
                 </CareerHeader>
                 <JobTable jobs={filteredJobs}></JobTable>
-            </div>
+            </MainPage>
         </main>
     )
 }

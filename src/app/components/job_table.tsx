@@ -3,7 +3,6 @@ import {JobEntry} from "@/app/components/job_entry";
 import {Job} from "@/app/interfaces";
 import styled from "styled-components";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {IconProp} from "@fortawesome/fontawesome-svg-core";
 import {faArrowLeft, faArrowRight} from "@fortawesome/free-solid-svg-icons";
 
 
@@ -14,8 +13,10 @@ interface JobTableProps {
 const TableContainer = styled.div`
   padding: 1rem;
   display: flex;
+  justify-items: start;
   flex-direction: column;
   align-items: center;
+  width: 352px;
   
   h2 {
     text-align: center;
@@ -29,6 +30,7 @@ const JobContainer = styled.div`
 const PaginationBar = styled.div`
   display: flex;
   justify-content: space-between;
+  width: 100%;
 
   h6 {
     color: var(--gray-700);
@@ -42,6 +44,10 @@ const PreviousPage = styled.div`
     padding-left: 0.25rem;
   }
 `
+const PageItem = styled.div`
+    
+  `
+
 const NextPage = styled.div`
   display: flex;
   align-items: center;
@@ -58,9 +64,20 @@ const PageIndex = styled.div`
 
 const JobTable: React.FC<JobTableProps> = ({jobs}) => {
     const [currentPage, setCurrentPage] = useState(0);
-    const entriesPerPage = 10;
+    const entriesPerPage: number = 10;
     const numPages = Math.ceil(jobs.length / entriesPerPage);
     const currentJobs = jobs.slice(currentPage * entriesPerPage, (currentPage + 1) * entriesPerPage);
+
+    const handlePreviousClick = () => {
+        if (currentPage > 0) {
+            setCurrentPage(currentPage - 1)
+        }
+    }
+    const handleNextClick = () => {
+        if (currentPage < numPages - 1) {
+            setCurrentPage(currentPage + 1)
+        }
+    }
     return (
         <TableContainer>
             <h2>Aktuelle Jobangebote</h2>
@@ -68,11 +85,11 @@ const JobTable: React.FC<JobTableProps> = ({jobs}) => {
                 {currentJobs.map((job, index) => (
                     <JobEntry job={job} key={index}/>))}</JobContainer>
             <PaginationBar>
-                <PreviousPage>
+                <PreviousPage onClick={handlePreviousClick}>
                     <SwitchPageIcon icon={faArrowLeft}/>
                     <h6>Vorherige</h6>
                 </PreviousPage>
-                <NextPage>
+                <NextPage onClick={handleNextClick}>
                     <h6>Nächste</h6>
                     <SwitchPageIcon icon={faArrowRight}/>
                 </NextPage>

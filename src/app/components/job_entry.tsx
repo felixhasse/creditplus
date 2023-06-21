@@ -3,6 +3,7 @@ import styled from "styled-components";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faArrowUpRightFromSquare, faClock, faLocationDot} from '@fortawesome/free-solid-svg-icons'
 import {Job} from "@/app/interfaces";
+import {Clock, MapPin, ArrowUpRight} from "react-feather"
 
 export interface JobEntryProps {
     job: Job,
@@ -17,7 +18,7 @@ const JobContainer = styled.div`
   border-radius: 10px;
   width: 100%;
   cursor: pointer;
-  
+
   :hover {
     background-color: var(--gray-75);
   }
@@ -38,6 +39,10 @@ const JobProperty = styled.div`
   display: flex;
   align-items: center;
   grid-column-start: span 1;
+  
+  h4 {
+    padding-left: 0.5rem;
+  }
 `
 const JobLink = styled.div`
   grid-row-start: 1;
@@ -45,19 +50,14 @@ const JobLink = styled.div`
   align-items: center;
   display: flex;
   grid-column-start: 3;
-  
+
   h6 {
     display: none;
-    @media(min-width: 481px) {
+    @media (min-width: 481px) {
       display: block;
+      padding-right: 0.5rem;
     }
   }
-`
-const JobPropertyIcon = styled(FontAwesomeIcon)`
-  color: var(--gray-700);
-  font-weight: var(--fa-font-light);
-  margin-right: 0.5rem;
-  font-size: 16px;
 `
 const JobLinkIcon = styled(FontAwesomeIcon)`
   color: var(--primary-600);
@@ -75,11 +75,12 @@ export const JobEntry: React.FC<JobEntryProps> = ({job}) => {
             <JobDepartment>{job.department}</JobDepartment>
             <JobLink>
                 <h6>Stelle Anzeigen</h6>
-            <JobLinkIcon icon={faArrowUpRightFromSquare}/>
+                <ArrowUpRight size={18} color={'var(--primary-600)'}/>
             </JobLink>
             <JobTitle>{job.title}</JobTitle>
-            <JobProperty><JobPropertyIcon icon={faLocationDot}/><h4>{job.location}</h4></JobProperty>
-            <JobProperty><JobPropertyIcon icon={faClock}/><h4>{job.type}</h4></JobProperty>
+            <JobProperty><MapPin size={18} color={'var(--gray-700)'}/><h4>{job.location}</h4></JobProperty>
+            <JobProperty><Clock size={18} color={'var(--gray-700)'}/><h4>{job.type}</h4></JobProperty>
+
         </JobContainer>
     )
 };

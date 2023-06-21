@@ -16,22 +16,26 @@ interface PageItemProps {
 }
 
 const TableContainer = styled.div`
-  margin: 1rem;
+  padding: 1rem;
   display: flex;
   justify-items: start;
   flex-direction: column;
   align-items: center;
-  width: 342px;
-
+  width: 100%;
+  max-width: 842px;
   h2 {
     text-align: center;
     margin-bottom: 1.5rem;
     margin-top: 1.5rem;
   }
+  @media(min-width: 481px) {
+    padding: 1rem 4rem;
+  }
 `
 const JobContainer = styled.div`
   display: grid;
   gap: 1rem;
+  width: 100%;
 `
 const PaginationBar = styled.div`
   display: flex;
@@ -46,10 +50,17 @@ const PreviousPage = styled.div`
   align-items: center;
   display: flex;
   cursor: pointer;
-
+  @media (min-width: 481px) {
+    h6 {
+      display: block;
+    }
+  }
   h6 {
     display: none;
     padding-left: 0.25rem;
+    @media (min-width: 481px) {
+      display: block;
+    }
   }
 `
 const PageItem = styled.div<PageItemProps>`
@@ -77,6 +88,9 @@ const NextPage = styled.div`
   h6 {
     display: none;
     padding-right: 0.25rem;
+    @media (min-width: 481px) {
+      display: block;
+    }
   }
 `
 const SwitchPageIcon = styled(FontAwesomeIcon)`

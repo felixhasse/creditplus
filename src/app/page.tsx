@@ -26,6 +26,7 @@ const CareerHeader = styled.div`
 `
 const MainPage = styled.div`
   display: flex;
+  max-width: 100vw;
   flex-direction: column;
   align-items: center;
 }

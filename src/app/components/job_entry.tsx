@@ -14,7 +14,7 @@ const JobContainer = styled.div`
   border: 1px solid var(--gray-200);
   padding: 1.5rem;
   border-radius: 10px;
-  width: 342px;
+  width: 100%;
 
 `
 const JobDepartment = styled.h6`
@@ -35,7 +35,16 @@ const JobProperty = styled.div`
 `
 const JobLink = styled.div`
   grid-row-start: 1;
-  grid-column-start: span 1;
+  justify-self: end;
+  display: flex;
+  grid-column-start: 3;
+  
+  h6 {
+    display: none;
+    @media(min-width: 481px) {
+      display: block;
+    }
+  }
 `
 const JobPropertyIcon = styled(FontAwesomeIcon)`
   color: var(--gray-700);
@@ -45,7 +54,7 @@ const JobPropertyIcon = styled(FontAwesomeIcon)`
 `
 const JobLinkIcon = styled(FontAwesomeIcon)`
   color: var(--primary-600);
-  grid-column-start: 3;
+  padding-left: 1rem;
   font-size: 14px;
 `
 
@@ -53,7 +62,10 @@ export const JobEntry: React.FC<JobEntryProps> = ({job}) => {
     return (
         <JobContainer>
             <JobDepartment>{job.department}</JobDepartment>
+            <JobLink>
+                <h6>Stelle Anzeigen</h6>
             <JobLinkIcon icon={faArrowUpRightFromSquare}/>
+            </JobLink>
             <JobTitle>{job.title}</JobTitle>
             <JobProperty><JobPropertyIcon icon={faLocationDot}/><h4>{job.location}</h4></JobProperty>
             <JobProperty><JobPropertyIcon icon={faClock}/><h4>{job.type}</h4></JobProperty>

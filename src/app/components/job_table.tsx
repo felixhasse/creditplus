@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {JobEntry} from "@/app/components/job_entry";
 import {Job} from "@/app/interfaces";
 import styled from "styled-components";
@@ -23,12 +23,14 @@ const TableContainer = styled.div`
   align-items: center;
   width: 100%;
   max-width: 842px;
+
   h2 {
     text-align: center;
     margin-bottom: 1.5rem;
     margin-top: 1.5rem;
   }
-  @media(min-width: 481px) {
+
+  @media (min-width: 481px) {
     padding: 1rem 4rem;
   }
 `
@@ -50,6 +52,7 @@ const PreviousPage = styled.div`
   align-items: center;
   display: flex;
   cursor: pointer;
+
   h6 {
     display: none;
     color: var(--gray-600);
@@ -72,9 +75,9 @@ const PageItem = styled.div<PageItemProps>`
   line-height: 40px;
 `
 const PageItemWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-  `
+  display: flex;
+  justify-content: center;
+`
 
 const NextPage = styled.div`
   display: flex;
@@ -109,43 +112,47 @@ const JobTable: React.FC<JobTableProps> = ({jobs}) => {
     const [paginationBarIndexes, setPaginationBarIndexes] = useState([0, 1, 2, 3, 4, 5, 6])
     const currentJobs = jobs.slice(currentPage * entriesPerPage, (currentPage + 1) * entriesPerPage);
 
+    useEffect(() => setCurrentPage(0), [jobs]);
+
+
     const handlePreviousClick = () => {
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1)
         }
-    }
+    };
     const handleNextClick = () => {
         if (currentPage < numPages - 1) {
             setCurrentPage(currentPage + 1)
         }
-    }
+    };
     return (
         <TableContainer>
             <h2>Aktuelle Jobangebote</h2>
             <JobContainer>
                 {currentJobs.map((job, index) => (
                     <JobEntry job={job} key={index}/>))}</JobContainer>
-            <Divider />
+            <Divider/>
             <PaginationBar>
                 <PreviousPage onClick={handlePreviousClick}>
                     <SwitchPageIcon icon={faArrowLeft}/>
                     <h6>Vorherige</h6>
                 </PreviousPage>
                 <PageItemWrapper>
-                {paginationBarIndexes.map((pageNumber, index) => {
-                    if (pageNumber === 0 || pageNumber === currentPage || pageNumber === numPages - 1 ||
-                        pageNumber === 1 && (currentPage === numPages - 1 || currentPage === 0)) {
-                        return (
-                            <PageItem onClick={() => setCurrentPage(pageNumber)} isClickable={true} isSelected={pageNumber === currentPage}
-                                      key={index}>{pageNumber + 1}</PageItem>)
-                    }
-                    if (Math.abs(pageNumber - currentPage) === 1 || currentPage === 0 && pageNumber === 2) {
-                        return (
-                            <PageItem isClickable={false} isSelected={false}
-                                      key={index}>{"..."}</PageItem>
-                        )
-                    }
-                })}
+                    {paginationBarIndexes.map((pageNumber, index) => {
+                        if (pageNumber === 0 || pageNumber === currentPage || pageNumber === numPages - 1 ||
+                            pageNumber === 1 && (currentPage === numPages - 1 || currentPage === 0)) {
+                            return (
+                                <PageItem onClick={() => setCurrentPage(pageNumber)} isClickable={true}
+                                          isSelected={pageNumber === currentPage}
+                                          key={index}>{pageNumber + 1}</PageItem>)
+                        }
+                        if (Math.abs(pageNumber - currentPage) === 1 || currentPage === 0 && pageNumber === 2) {
+                            return (
+                                <PageItem isClickable={false} isSelected={false}
+                                          key={index}>{"..."}</PageItem>
+                            )
+                        }
+                    })}
                 </PageItemWrapper>
                 <NextPage onClick={handleNextClick}>
                     <h6>Nächste</h6>

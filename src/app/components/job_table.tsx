@@ -21,7 +21,7 @@ const TableContainer = styled.div`
   justify-items: start;
   flex-direction: column;
   align-items: center;
-  width: 352px;
+  width: 342px;
 
   h2 {
     text-align: center;

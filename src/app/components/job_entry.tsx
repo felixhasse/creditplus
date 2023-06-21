@@ -14,7 +14,7 @@ const JobContainer = styled.div`
   border: 1px solid var(--gray-200);
   padding: 1.5rem;
   border-radius: 10px;
-  width: 352px;
+  width: 342px;
 
 `
 const JobDepartment = styled.h6`
